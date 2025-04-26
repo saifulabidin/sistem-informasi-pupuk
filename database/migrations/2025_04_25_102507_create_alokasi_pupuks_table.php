@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('alokasi_pupuks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('kelompok_tani_id')->constrained('kelompok_tani')->onDelete('cascade');
-            $table->foreignId('pupuk_id')->constrained('pupuks')->onDelete('cascade');
+            $table->unsignedBigInteger('kelompok_tani_id');
+            $table->unsignedBigInteger('pupuk_id');
             $table->integer('jumlah_alokasi');
             $table->string('status')->default('belum_diambil'); // belum_diambil, sebagian, selesai
             $table->integer('jumlah_diambil')->default(0);

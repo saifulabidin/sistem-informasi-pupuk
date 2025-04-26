@@ -1,5 +1,7 @@
 # Sistem Informasi Penjualan Pupuk
 
+[![Build Status](https://github.com/saifulabidin/sistem-informasi-pupuk/actions/workflows/laravel-ci.yml/badge.svg)](https://github.com/saifulabidin/sistem-informasi-pupuk/actions/workflows/laravel-ci.yml)
+
 Aplikasi sistem informasi untuk membantu pengecer dalam mengelola distribusi pupuk kepada petani. Dibangun menggunakan Laravel dan Filament Admin Panel untuk pengembangan yang cepat, mudah dipelajari, namun tetap fleksibel dan maintainable.
 
 ## Fitur Utama
