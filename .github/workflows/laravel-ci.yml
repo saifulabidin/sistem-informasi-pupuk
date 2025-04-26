@@ -24,7 +24,7 @@ jobs:
     steps:
     - uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.3'  # Diubah dari 8.1 ke 8.3
+        php-version: '8.3'
         extensions: mbstring, dom, fileinfo, mysql, gd, zip
         coverage: xdebug
 
@@ -47,6 +47,32 @@ jobs:
         COMPOSER_PROCESS_TIMEOUT: 0
         COMPOSER_NO_INTERACTION: 1
         COMPOSER_NO_AUDIT: 1
+
+    - name: Create .env file
+      run: |
+        if [ -f .env.example ]; then
+          cp .env.example .env
+        else
+          # Membuat .env file minimal jika .env.example tidak ada
+          cat > .env << EOF
+        APP_NAME="Sistem Informasi Pupuk"
+        APP_ENV=testing
+        APP_KEY=
+        APP_DEBUG=true
+        APP_URL=http://localhost
+        
+        DB_CONNECTION=mysql
+        DB_HOST=127.0.0.1
+        DB_PORT=3306
+        DB_DATABASE=laravel
+        DB_USERNAME=root
+        DB_PASSWORD=password
+        
+        CACHE_DRIVER=array
+        SESSION_DRIVER=array
+        QUEUE_DRIVER=sync
+        EOF
+        fi
 
     - name: Generate key
       run: php artisan key:generate
