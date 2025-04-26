@@ -5,6 +5,7 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+  workflow_dispatch:
 
 jobs:
   laravel-tests:
@@ -23,7 +24,7 @@ jobs:
     steps:
     - uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.1'
+        php-version: '8.3'  # Diubah dari 8.1 ke 8.3
         extensions: mbstring, dom, fileinfo, mysql, gd, zip
         coverage: xdebug
 
