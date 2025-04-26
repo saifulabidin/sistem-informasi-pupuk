@@ -48,34 +48,18 @@ jobs:
         COMPOSER_NO_INTERACTION: 1
         COMPOSER_NO_AUDIT: 1
 
-    - name: Create .env file
-      run: |
-        if [ -f .env.example ]; then
-          cp .env.example .env
-        else
-          # Membuat .env file minimal jika .env.example tidak ada
-          cat > .env << EOF
-        APP_NAME="Sistem Informasi Pupuk"
-        APP_ENV=testing
-        APP_KEY=
-        APP_DEBUG=true
-        APP_URL=http://localhost
-        
-        DB_CONNECTION=mysql
-        DB_HOST=127.0.0.1
-        DB_PORT=3306
-        DB_DATABASE=laravel
-        DB_USERNAME=root
-        DB_PASSWORD=password
-        
-        CACHE_DRIVER=array
-        SESSION_DRIVER=array
-        QUEUE_DRIVER=sync
-        EOF
-        fi
-
+    - name: Create .env file from Secrets
+      run: echo "${{ secrets.ENV_FILE }}" > .env
+      
     - name: Generate key
-      run: php artisan key:generate
+      run: php artisan key:generate --force
+      env:
+        DB_CONNECTION: mysql
+        DB_HOST: 127.0.0.1
+        DB_PORT: 3306
+        DB_DATABASE: laravel
+        DB_USERNAME: root
+        DB_PASSWORD: password
 
     - name: Directory Permissions
       run: chmod -R 777 storage bootstrap/cache
@@ -92,6 +76,7 @@ jobs:
         DB_PASSWORD: password
 
     - name: Execute tests via PHPUnit
+      run: vendor/bin/phpunit
       env:
         DB_CONNECTION: mysql
         DB_HOST: 127.0.0.1
@@ -99,4 +84,3 @@ jobs:
         DB_DATABASE: laravel
         DB_USERNAME: root
         DB_PASSWORD: password
-      run: vendor/bin/phpunit
