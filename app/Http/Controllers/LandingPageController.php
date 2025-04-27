@@ -27,4 +27,44 @@ class LandingPageController extends Controller
         
         return view('landing', compact('pupuk', 'kelompokTani'));
     }
+
+    /**
+     * Show the about us page
+     * 
+     * @return \Illuminate\View\View
+     */
+    public function tentangKami()
+    {
+        return view('pages.tentang-kami');
+    }
+
+    /**
+     * Show the user guide page
+     * 
+     * @return \Illuminate\View\View
+     */
+    public function panduanPenggunaan()
+    {
+        return view('pages.panduan-penggunaan');
+    }
+
+    /**
+     * Show the privacy policy page
+     * 
+     * @return \Illuminate\View\View
+     */
+    public function kebijakanPrivasi()
+    {
+        return view('pages.kebijakan-privasi');
+    }
+
+    /**
+     * Show the terms and conditions page
+     * 
+     * @return \Illuminate\View\View
+     */
+    public function syaratKetentuan()
+    {
+        return view('pages.syarat-ketentuan');
+    }
 }
